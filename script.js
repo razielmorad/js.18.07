@@ -6,14 +6,7 @@ const colorInput = document.getElementById("color");
 const countryInput = document.getElementById("country");
 const maleInput = document.getElementById("male");
 const femaleInput = document.getElementById("female");
-console.dir('cardDiv')
-console.log(inputsContainer)
-console.log(nameInput)
-console.log(ageInput)
-console.log(colorInput)
-console.log(countryInput)
-console.log(maleInput)
-function getRadioBvalue() {
+function getRadioValue() {
   if (maleInput.checked) {
     return "male";
   } else if (femaleInput.checked) {
@@ -23,30 +16,31 @@ function getRadioBvalue() {
   }
 }
 function createCardInnerHtml() {
-  if (nameInput.value.length<2){
-    alert('your name is short')
-    return
+  if (nameInput.value.length < 1) {
+    alert("your name is short");
+    return;
   }
-  if(ageInput.value<5){
-    alert("you don't know how to write")
-  } 
-  if (ageInput.value >120){
-    alert('you cant be this old!')
+  if (ageInput.value <= 5) {
+    alert("you don't know how to write");
+    return;
   }
-  cardDiv.innerHTML +=
-    `<div class="card" style= "text-align: center; background-color: ${colorInput.value};">
+  if (ageInput.value > 120) {
+    alert("you cant be this old!");
+    return;
+  }
+  cardDiv.innerHTML += `<div class="card" style= "text-align: center; background-color: ${
+    colorInput.value
+  };">
   <div class="card-body">
-      <h5 class="card-title">` +
-    `Name :${nameInput.value}</h5>
+      <h5 class="card-title"> Name :${nameInput.value}</h5>
   </div>
   <ul>
-      <li class="list-group-item">` +
-    `Age :${ageInput.value} </li>
+      <li class="list-group-item">
+    Age :${ageInput.value} </li>
 <li class="list-group-item"> country: ${countryInput.value}
 </li>
-<li class="list-group-item"> gender:` +
-    getRadioBvalue() +
-    ` 
+<li class="list-group-item"> gender:
+    ${getRadioValue()}
 </li>
   </ul>
 </div>`;
@@ -63,5 +57,4 @@ function resetValues() {
 function showBsCardWithBg() {
   createCardInnerHtml();
   resetValues();
- 
 }
